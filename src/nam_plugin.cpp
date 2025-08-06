@@ -140,7 +140,10 @@ namespace NAM {
 				{
 					response.path[0] = '\0';
 
-					lv2_log_error(&nam->logger, "Unable to load model from: '%s'\n", msg->path);
+                    if (msg->path[0]  != '\0') // no message on blank selection.
+                    {
+					    lv2_log_error(&nam->logger, "Unable to load model from: '%s'\n", msg->path);
+                    }
 				}
 
 				respond(handle, sizeof(response), &response);
